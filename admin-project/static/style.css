@@ -1,0 +1,87 @@
+/* admin.html */
+
+/* 검색창 */
+.col-3 input{
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 0.375rem;
+    padding: 0 11px;
+    height: 38px;
+    line-height: 38px;
+    outline: none;
+}
+
+.col-3 input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+/* 회원가입 버튼 */
+.signup{
+    text-align: right;
+}
+.signup-btn{
+    border: 1px solid rgb(212, 212, 212);
+    background-color: white;
+    border-radius: 0.375rem;
+    padding: 6px 14px;
+}
+.signup-btn:active{
+    color: rgb(121, 121, 121);
+    transition: background-color 0.2s ease;
+}
+
+/* 테이블 */
+#thead{
+    font-weight: 700;
+}
+#thead td{
+    padding: 12px 8px;
+}
+
+/* 페이지네이션 */
+.page{
+    text-align: center;
+}
+
+.pagenation{
+    list-style: none;
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+.pagenation li{
+    border: 1px solid rgb(212, 212, 212);
+    display: inline-block;
+    text-align: center;
+    border-radius: 0.375rem;
+}
+
+.pagenation a{
+    float: left;
+    display: block;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: black;
+}
+
+.first:hover, .num:hover, .next:hover, .signup-btn:hover{
+    background-color: rgb(245, 245, 245);
+}
+
+.pagenation a:active{
+    color: rgb(121, 121, 121);
+}
+
+.pagenation li.active a {
+    background-color: rgb(60, 60, 60);
+    color: white;
+    border-color: rgb(60, 60, 60);
+}
+
+/* signup.html */
+.legend{
+    color: rgb(48, 48, 48);
+    font-size: 20px;
+}
