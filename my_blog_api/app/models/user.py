@@ -1,7 +1,7 @@
 # app/models/user.py
 from sqlalchemy import String, Integer, DateTime, func, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from app.db.session import Base
+from my_blog_api.app.db.session import Base
 from datetime import datetime
 
 

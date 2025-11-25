@@ -1,7 +1,7 @@
 
 from sqlalchemy import ForeignKey, Integer, String, Text, DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from app.db.session import Base
+from my_blog_api.app.db.session import Base
 
 
 class Post(Base):

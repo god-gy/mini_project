@@ -1,20 +1,19 @@
 # app/routers/user.py
-from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Path, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.crud.user import (
+from my_blog_api.app.crud.user import (
     UserAlreadyExists,
     create_user,
     get_user_by_id,
 )
-from app.dependencies import (
+from my_blog_api.app.dependencies import (
     get_current_user,
     get_db,  # ✅ DI 일원화
 )
-from app.models.user import User as UserModel
-from app.schemas.user import UserCreate, UserRead
+from my_blog_api.app.models.user import User as UserModel
+from my_blog_api.app.schemas.user import UserCreate, UserRead
 
 router = APIRouter(prefix="/users", tags=["users"])
 

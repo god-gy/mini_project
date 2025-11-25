@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.schemas.post import PostCreate
+from my_blog_api.app.schemas.post import PostCreate
 
 async def get_posts_from_db(db: AsyncSession):
         return [

@@ -5,11 +5,9 @@ from fastapi import Depends, FastAPI
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.session import Base, engine
-from app.dependencies import get_db
-from app.routers import auth as auth_router
-from app.routers import user as user_router
-from app.routers import post as post_router
+from my_blog_api.app.db.session import Base, engine
+from my_blog_api.app.dependencies import get_db
+from my_blog_api.app.routers import auth as auth_router, user as user_router, post as post_router
 
 
 @asynccontextmanager
