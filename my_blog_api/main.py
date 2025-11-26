@@ -5,10 +5,11 @@ from fastapi import Depends, FastAPI
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from my_blog_api.app.db.session import Base, engine
-from my_blog_api.app.dependencies import get_db
-from my_blog_api.app.routers import auth as auth_router, user as user_router, post as post_router
-
+from app.db.session import Base, engine
+from app.dependencies import get_db
+from app.routers import auth as auth_router
+from app.routers import user as user_router
+from app.routers import post as post_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,7 +20,7 @@ async def lifespan(app: FastAPI):
     await engine.dispose()
 
 
-app = FastAPI(title="My Blog API", lifespan=lifespan)
+app = FastAPI(title="My Blog API (Day 2)", lifespan=lifespan)
 
 app.include_router(user_router.router)
 app.include_router(auth_router.router)

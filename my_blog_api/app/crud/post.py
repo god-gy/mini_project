@@ -1,22 +1,60 @@
+from typing import Sequence
+from sqlalchemy import select, update, delete
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
-from my_blog_api.app.schemas.post import PostCreate
+from app.models.post import Post
+from app.schemas.post import PostCreate, PostUpdate
 
-async def get_posts_from_db(db: AsyncSession):
-        return [
-                {"id": 1, "title": "title 1", "content": "content 1", "owner_id": 1},
-                {"id": 2, "title": "title 2", "content": "content 2", "owner_id": 2},
-        ]
+async def create_post(db: AsyncSession, data: PostCreate, owner_id: int) -> Post:
+        post = Post(title=data.title, content=data.content, owner_id=owner_id)
+        db.add(post)
+        await db.commit()
+        await db.refresh(post)  # creatd_at, updated_at, id 새로 얻어옴
+        return post
 
+async def get_post(db: AsyncSession, post_id: int) -> Post | None:
+        # 쿼리가 1번, N+1 문제 해결, eager loading 9999999
+        stmt = (
+                select(Post)
+                .options(selectinload(Post.comments))
+                .where(Post.id == post_id)
+        )
+        res = await db.execute(stmt)
+        return res.scalar_one_or_none()
 
-async def create_post(
-        db: AsyncSession,
-        data: PostCreate,
-        owner_id: int,
-        ):
-        title = data.title
-        content = data.content
-        user_id = owner_id
+async def list_posts(db: AsyncSession, limit: int = 20, offset: int = 0) -> Sequence[Post]:
+        stmt = (
+                select(Post)
+                .options(selectinload(Post.comments))
+                .order_by(Post.id.desc())
+                .limit(limit)
+                .offset(offset)
+        )
+        res = await db.execute(stmt)
+        return res.scalars().all()
 
-        # sqlalchemy 써서 save 했다고 치고
+async def update_post(db: AsyncSession, post_id: int, data: PostUpdate) -> Post | None:
+        stmt = (
+                update(Post)
+                .where(Post.id == post_id)
+                .values({k: v for k, v in data.model_dump(exclude_none=True).items()})
+                # .values(      # 변경할 필드가 많지 않을 때 간단하게 아래처럼 작성 가능
+                #         {
+                #                 "title": data.title,
+                #                 "content": data.content,
+                #         }
+                # )
+                .returning(Post)
+        )
+        res = await db.execute(stmt)
+        post = res.scalar_one_or_none()
+        if post:
+                await db.commit()
+                await db.refresh(post)
+        return post
 
-        return True
+async def delete_post(db: AsyncSession, post_id: int) -> bool:
+        # 따로 변수 셋팅 없이도 가능
+        res = await db.execute(delete(Post).where(Post.id == post_id))
+        await db.commit()
+        return res.rowcount > 0

@@ -1,8 +1,6 @@
-from datetime import datetime
 from pydantic import BaseModel, Field, ConfigDict
-# from app.schemas.comment import CommentRead
-
-# pydantic 으로 스키마를 만들어서 사용자의 입력을 받으면 입력값 검증을 할 수 있다
+from datetime import datetime
+from app.schemas.comment import CommentRead
 
 class PostBase(BaseModel):
     title: str = Field(min_length=1, max_length=200)
@@ -20,6 +18,6 @@ class PostRead(PostBase):
     owner_id: int
     created_at: datetime | None = None
     updated_at: datetime | None = None
-    # comments: list[CommentRead] = []   # 🔁 중첩 스키마
+    comments: list[CommentRead] = []   # 🔁 중첩 스키마
 
     model_config = ConfigDict(from_attributes=True)

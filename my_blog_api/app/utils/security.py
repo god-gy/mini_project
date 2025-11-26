@@ -5,7 +5,7 @@ from jose import jwt
 from passlib.context import CryptContext
 from starlette.concurrency import run_in_threadpool
 
-from my_blog_api.app.core.settings import security_settings as S  # ✅ 중앙 설정에서 주입
+from app.core.settings import security_settings as S  # ✅ 중앙 설정에서 주입
 
 # ==========================
 # Password hashing (Argon2)

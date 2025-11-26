@@ -5,9 +5,9 @@ from sqlalchemy import event
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 
-from my_blog_api.app.crud.user import get_user_by_username
-from my_blog_api.app.db.session import AsyncSessionLocal
-from my_blog_api.app.utils.security import verify_access_token
+from app.crud.user import get_user_by_username
+from app.db.session import AsyncSessionLocal
+from app.utils.security import verify_access_token
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 

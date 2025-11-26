@@ -1,7 +1,7 @@
 # app/models/user.py
 from sqlalchemy import String, Integer, DateTime, func, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from my_blog_api.app.db.session import Base
+from app.db.session import Base
 from datetime import datetime
 
 
@@ -18,10 +18,10 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now
+        DateTime(timezone=True), server_default=func.now()
     )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now, onupdate=func.now
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
 
     # 관계 추가

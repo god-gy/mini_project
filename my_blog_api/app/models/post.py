@@ -1,7 +1,7 @@
 
 from sqlalchemy import ForeignKey, Integer, String, Text, DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from my_blog_api.app.db.session import Base
+from app.db.session import Base
 
 
 class Post(Base):
@@ -12,10 +12,10 @@ class Post(Base):
     content: Mapped[str] = mapped_column(Text, nullable=False)
 
     created_at: Mapped["DateTime"] = mapped_column(
-        DateTime(timezone=True), server_default=func.now
+        DateTime(timezone=True), server_default=func.now()
     )
     updated_at: Mapped["DateTime"] = mapped_column(
-        DateTime(timezone=True), server_default=func.now, onupdate=func.now
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
 
     # 한 명의 사용자가 여러개의 게시글을 작성할 수 있음.

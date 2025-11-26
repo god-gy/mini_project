@@ -4,9 +4,9 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from my_blog_api.app.models.user import User
-from my_blog_api.app.schemas.user import UserCreate
-from my_blog_api.app.utils.security import get_password_hash_async  # async 래퍼 사용
+from app.models.user import User
+from app.schemas.user import UserCreate
+from app.utils.security import get_password_hash_async  # async 래퍼 사용
 
 
 class UserAlreadyExists(Exception):

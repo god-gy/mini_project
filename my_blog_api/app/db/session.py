@@ -8,7 +8,7 @@ from sqlalchemy.orm import declarative_base
 
 class Settings(BaseSettings):
     db_host: str = "localhost"
-    db_port: int = 5432
+    db_port: int = 52596
     db_user: str = "myuser"
     db_password: str = "mypass"
     db_name: str = "myblog"
