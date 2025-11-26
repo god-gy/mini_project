@@ -1,0 +1,8 @@
+schedule_manager.py
+setup.py
+myschedule.egg-info/PKG-INFO
+myschedule.egg-info/SOURCES.txt
+myschedule.egg-info/dependency_links.txt
+myschedule.egg-info/entry_points.txt
+myschedule.egg-info/requires.txt
+myschedule.egg-info/top_level.txt

@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: myschedule
+Version: 1.0.0
+Summary: 일정 관리 프로그램
+Author: Your_name
+Requires-Dist: pymysql
+Requires-Dist: cryptography
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: summary
