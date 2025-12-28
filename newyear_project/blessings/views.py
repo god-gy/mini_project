@@ -25,10 +25,8 @@ def home(request: HttpRequest) -> HttpResponse:
 
         blessing_text = pick_random_blessing()
 
-        # base_url 구성: 배포 시엔 settings로 박는 게 안전
         base_url = getattr(settings, "SITE_BASE_URL", None)
         if not base_url:
-            # 개발 편의용(리버스 프록시 환경에선 오작동 가능)
             scheme = "https" if request.is_secure() else "http"
             base_url = f"{scheme}://{request.get_host()}"
 
@@ -59,13 +57,11 @@ def write(request: HttpRequest) -> HttpResponse:
         messages.success(request, "덕담을 저장했습니다.")
         return redirect("blessings:home")
 
-    # GET
     from_email = (request.GET.get("from") or "").strip()
     return render(request, "blessings/write.html", {"from_email": from_email})
 
 
 
 def owner_inbox(request: HttpRequest) -> HttpResponse:
-    # MVP: 간단히 접근. 실제 배포는 로그인/비번 보호 필수
     items = UserBlessing.objects.order_by("-created_at")[:500]
     return render(request, "blessings/owner_inbox.html", {"items": items})
