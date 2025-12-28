@@ -1,0 +1,33 @@
+{% extends "blessings/base.html" %}
+{% block title %}주인장 인박스 · 새해 덕담{% endblock %}
+
+{% block content %}
+  <div class="hero">
+    <h2 class="hero-title">주인장 받은 덕담</h2>
+    <p class="hero-sub">사용자가 “나도 덕담하기”에서 남긴 메시지가 여기에 쌓입니다.</p>
+
+    <div class="card">
+      <div class="actions" style="margin-top:0;">
+        <span class="badge">총 {{ items|length }}개</span>
+        <a class="btn" href="{% url 'blessings:home' %}">홈으로</a>
+      </div>
+
+      <div class="list">
+        {% for it in items %}
+          <div class="item">
+            <div class="item-top">
+              <div>
+                <b>From</b> :
+                {% if it.from_email %}{{ it.from_email }}{% else %}(익명){% endif %}
+              </div>
+              <div>{{ it.created_at }}</div>
+            </div>
+            <div class="item-msg">{{ it.message }}</div>
+          </div>
+        {% empty %}
+          <div class="notice">아직 받은 덕담이 없습니다.</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

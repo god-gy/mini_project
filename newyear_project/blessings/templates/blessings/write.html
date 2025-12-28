@@ -1,0 +1,43 @@
+{% extends "blessings/base.html" %}
+{% block title %}덕담하기 · 새해 덕담{% endblock %}
+
+{% block content %}
+  <div class="hero">
+    <h2 class="hero-title">나도 덕담하기</h2>
+    <p class="hero-sub">받은 분(내 이메일)이 자동으로 들어가고, 덕담만 남기면 됩니다.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h2>덕담 작성</h2>
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="field">
+            <label>내 이메일 (메일을 받은 사람)</label>
+            <input name="from_email" type="email" value="{{ from_email }}" placeholder="선택(비워도 됨)">
+          </div>
+
+          <div class="field">
+            <label>덕담 내용</label>
+            <textarea name="message" placeholder="짧고 단단하게 한 줄도 좋습니다." required></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">덕담 보내기</button>
+            <a class="btn" href="{% url 'blessings:home' %}">홈으로</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>팁</h2>
+        <div class="notice">
+          - 과하게 길 필요 없습니다.<br>
+          - “올해는 ○○ 잘 되길” 정도로도 충분합니다.<br>
+          - 남긴 덕담은 주인장 인박스에 저장됩니다.
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

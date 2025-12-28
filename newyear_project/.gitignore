@@ -1,0 +1,8 @@
+**/.env
+**/db.sqlite3
+**/.python-version
+.idea/
+*.iml
+**/__pycache__/
+**/*initial.py
+.config_secret/

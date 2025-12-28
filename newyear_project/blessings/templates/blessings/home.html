@@ -1,0 +1,38 @@
+{% extends "blessings/base.html" %}
+{% block title %}홈 · 새해 덕담{% endblock %}
+
+{% block content %}
+  <div class="hero">
+    <h2 class="hero-title">덕담을 한 통, 가볍게 받아두기</h2>
+    <p class="hero-sub">이메일을 넣고 버튼을 누르면, 랜덤 새해 덕담이 도착합니다.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h2>덕담받기</h2>
+        <p>받은 메일 안의 “나도 덕담하기” 버튼으로, 덕담을 남길 수 있습니다.</p>
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="field">
+            <label>이메일</label>
+            <input name="email" type="email" placeholder="example@email.com" required>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">덕담받기</button>
+            <a class="btn btn-blue" href="{% url 'blessings:owner_inbox' %}">주인장 받은 덕담 보기</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>작동 방식</h2>
+        <div class="notice">
+          1) 홈에서 메일 입력 → 덕담 메일 수신<br>
+          2) 메일 안 버튼 클릭 → 덕담 작성 페이지 이동<br>
+          3) 작성 후 전송 → DB 저장<br>
+          4) 주인장 인박스에서 확인
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

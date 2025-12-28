@@ -1,0 +1,32 @@
+{% extends "blessings/base.html" %}
+{% block title %}발송 완료 · 새해 덕담{% endblock %}
+
+{% block content %}
+  <div class="hero">
+    <h2 class="hero-title">발송 완료</h2>
+    <p class="hero-sub">입력하신 이메일로 덕담을 보냈습니다.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h2>수신 이메일</h2>
+        <div class="notice">
+          <b>{{ email }}</b><br/>
+          메일함(스팸함 포함)에서 확인해 주세요.
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="{% url 'blessings:home' %}">홈으로</a>
+          <a class="btn" href="{% url 'blessings:write' %}">덕담하기 페이지</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>다음 단계</h2>
+        <div class="notice">
+          받은 메일 안의 <b>“나도 덕담하기”</b> 버튼을 누르면<br/>
+          덕담 작성 페이지로 바로 이동합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
